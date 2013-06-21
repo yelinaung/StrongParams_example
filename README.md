@@ -1,4 +1,4 @@
-StrongParams_example
+Strong Params Example
 ====================
 
 Rails 4 Strong param example with Devise
@@ -8,7 +8,9 @@ Rails 4 Strong param example with Devise
 
 #### The Lazy Way
 
-If you are adding the new attributes to forms (e.g `sign_up` here), you may see this error in the rails log `Unpermitted parameters:` at `POST` request to the form.
+Rails 4 moved `parameter sanitization` from `model` to `controller`. You no longer will use `attr_accessible` and `attr_protected` in models.
+
+If you are adding the new attributes to forms (e.g `sign_up` form here), you may see this error in the rails log `Unpermitted parameters:...` at `POST` request to the form.
 
 Let's assume you've added your desire attribute in `registrations\new.html.erb` and add these to your `application` controller.
 
@@ -20,3 +22,6 @@ def configure_permitted_parameters
   devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:name, :email, :password, :password_confirmation) }
 end
 ```
+That's it!
+
+
