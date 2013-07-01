@@ -22,6 +22,15 @@ def configure_permitted_parameters
   devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:name, :email, :password, :password_confirmation) }
 end
 ```
+
+For Sign_In process, you have to use the special  `config.authentication_keys` in the `config/initializers/devise.rb` . Else, you can define the attribute you want in the respective model, put `authentication_keys` to be the attribute you want to be.
+
+After that, customize the `sessions/new.html.erb` accordingly. Add these to your `application` controller.
+
+```ruby
+    devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:name, :email, :password, :remember_me) }
+```
+
 That's it!
 
 
